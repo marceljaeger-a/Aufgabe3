@@ -8,12 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var entries: Array<DetailEntry> = []
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("\(entries.count)")
+            
+            Button {
+                Task {
+                    let service = OMDService()
+                    do {
+                        let result = try await service.getDetail(with: .title("Spiderman"))
+                        print(result)
+                    } catch {
+                        print(error)
+                    }
+                }
+            } label: {
+                Text("Load")
+            }
         }
         .padding()
     }
