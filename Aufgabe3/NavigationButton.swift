@@ -41,7 +41,7 @@ struct NavigationButton: View {
             Button {
                 selection = 2
             } label: {
-                Image(systemName: "checklist")
+                Image(systemName: "bookmark.fill")
                     .padding()
                     .foregroundStyle(colorOfSecondButton)
             }
@@ -49,7 +49,7 @@ struct NavigationButton: View {
         }
         .background(alignment: selection == 1 ? .leading : .trailing) {
             Circle()
-                .fill(Color.accentColor.tertiary)
+                .fill(Color.accentColor.tertiary.shadow(.inner(radius: 1)))
         }
         .padding(3)
         .background(.regularMaterial.shadow(.drop(radius: 2)), in: .capsule)
