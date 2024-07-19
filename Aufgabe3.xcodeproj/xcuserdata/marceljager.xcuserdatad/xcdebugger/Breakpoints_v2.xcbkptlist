@@ -3,4 +3,52 @@
    uuid = "13E4A352-93C3-47EA-97D3-D4E779ABB0B1"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A9B56039-8AB6-4946-9F0A-BB14A7E0341E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Aufgabe3/OMDService/OMDService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "getDetail(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A9B56039-8AB6-4946-9F0A-BB14A7E0341E - 1b4a1a2aaf0dbd73"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Aufgabe3.OMDService.getDetail(with: Aufgabe3.GetQueryItem...) async throws -&gt; Aufgabe3.DetailEntry"
+                  moduleName = "Aufgabe3"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/marceljager/Developer/MiniHackathon/Aufgabe3/Aufgabe3/OMDService/OMDService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45">
+               </Location>
+               <Location
+                  uuid = "A9B56039-8AB6-4946-9F0A-BB14A7E0341E - 616fd5d0a0f15f70"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Aufgabe3.OMDService.getDetail(with: Aufgabe3.GetQueryItem...) async throws -&gt; Aufgabe3.DetailEntry"
+                  moduleName = "Aufgabe3"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/marceljager/Developer/MiniHackathon/Aufgabe3/Aufgabe3/OMDService/OMDService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -10,8 +10,10 @@ import SwiftUI
 
 struct BookmarkButton: View {
     let entry: SearchEntry
-    let watchlist: Watchlist
-    let isBookmarkd: Bool
+    @Environment(Watchlist.self) var watchlist
+    var  isBookmarkd: Bool {
+        watchlist.contains(entry)
+    }
     
     var body: some View {
         Image(systemName: "bookmark")

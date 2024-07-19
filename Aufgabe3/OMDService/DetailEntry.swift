@@ -33,6 +33,7 @@ struct DetailEntry: Codable {
     var boxOffice: String
     var production: String
     var website: String
+    var totalSeasons: String
     var response: String
     
     init(from decoder: any Decoder) throws {
@@ -61,6 +62,7 @@ struct DetailEntry: Codable {
         self.boxOffice = try container.decode(String.self, forKey: .BoxOffice)
         self.production = try container.decode(String.self, forKey: .Production)
         self.website = try container.decode(String.self, forKey: .Website)
+        self.totalSeasons = try container.decode(String.self, forKey: .totalSeasons)
         self.response = try container.decode(String.self, forKey: .Response)
     }
     
@@ -89,6 +91,7 @@ struct DetailEntry: Codable {
         case BoxOffice
         case Production
         case Website
+        case totalSeasons
         case Response
     }
     
@@ -118,6 +121,7 @@ struct DetailEntry: Codable {
         try container.encode(self.boxOffice, forKey: .BoxOffice)
         try container.encode(self.production, forKey: .Production)
         try container.encode(self.website, forKey: .Website)
+        try container.encode(self.totalSeasons, forKey: .totalSeasons)
         try container.encode(self.response, forKey: .Response)
     }
 }

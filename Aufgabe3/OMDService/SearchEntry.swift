@@ -15,6 +15,14 @@ struct SearchEntry: Codable, Hashable {
     var type: String
     var poster: String
     
+    init() {
+        self.title = "Demon Slayer: Kimetsu no Yaiba"
+        self.year = "2019"
+        self.imdbID = "tt9335498"
+        self.type = "series"
+        self.poster = "https://m.media-amazon.com/images/M/MV5BYTIxNjk3YjItYmYzMC00ZTdmLTk0NGUtZmNlZTA0NWFkZDMwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg"
+    }
+    
     
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
