@@ -46,17 +46,17 @@ struct EntryView: View {
                     }
                 }
                 .animation(.bouncy, value: persistentEntry?.hasWatched)
-                .onTapGesture {
-                    if isSelected {
-                        selectedEntry = nil
-                    }else {
-                        selectedEntry = entry
-                    }
-                }
-            
+                
             EntryInfoView(title: entry.title, year: entry.year, type: entry.type)
             
             Spacer()
+        }
+        .onTapGesture {
+            if isSelected {
+                selectedEntry = nil
+            }else {
+                selectedEntry = entry
+            }
         }
         .overlay(alignment: .leading) {
             VStack {
