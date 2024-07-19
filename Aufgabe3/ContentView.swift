@@ -7,29 +7,39 @@
 
 import SwiftUI
 
+
+
 struct ContentView: View {
     
-    @State var entries: Array<DetailEntry> = []
-    
+    @State var selection: Int = 1
+    @State var watchlist: Array<SearchEntry> = []
+ 
     var body: some View {
-        VStack {
-            Text("\(entries.count)")
-            
-            Button {
-                Task {
-                    let service = OMDService()
-                    do {
-                        let result = try await service.getDetail(with: .title("Spiderman"))
-                        print(result)
-                    } catch {
-                        print(error)
+        ZStack {
+            DiscoverView(watchlist: $watchlist)
+                .opacity(selection == 1 ? 1.0 : 0.0)
+                .transaction(value: selection) { transaction in
+                    if selection == 1 {
+                        transaction.animation = .smooth
+                    }else {
+                        transaction.animation = nil
                     }
                 }
-            } label: {
-                Text("Load")
-            }
+            
+            WatchlistView(watchlist: $watchlist)
+                .opacity(selection == 2 ? 1.0 : 0.0)
+                .transaction(value: selection) { transaction in
+                    if selection == 2 {
+                        transaction.animation = .smooth
+                    }else {
+                        transaction.animation = nil
+                    }
+                }
         }
-        .padding()
+        .overlay(alignment: .top) {
+            NavigationButton(selection: $selection)
+                .padding(5)
+        }
     }
 }
 

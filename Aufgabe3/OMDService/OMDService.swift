@@ -47,10 +47,6 @@ struct OMDService {
     }
     
     func search(title: String, with items: SearchQueryItem...) async throws -> SearchResult {
-        guard items.isEmpty == false else {
-            throw OMDError.noArgument
-        }
-        
         let urlComponents = URLComponents(string: "https://www.omdbapi.com/")
 
         guard var urlComponents else {
