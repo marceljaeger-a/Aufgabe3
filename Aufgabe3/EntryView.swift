@@ -7,17 +7,51 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
 struct EntryView: View {
     let entry: SearchEntry
     
-    @State var showControl: Bool = false
+    @Query var bookmarkdEntries: Array<PersistentEntry>
+    
+    var persistentEntry: PersistentEntry? {
+        for bookmarkdEntry in bookmarkdEntries {
+            if bookmarkdEntry.imdbID == entry.imdbID {
+                return bookmarkdEntry
+            }
+        }
+        return nil
+    }
+    
+    @Binding var selectedEntry: SearchEntry? 
+    
+    var isSelected: Bool {
+        selectedEntry == entry
+    }
     
     var body: some View {
         HStack(spacing: 25) {
             EntryPosterImage(posterURL: entry.poster)
+                .overlay {
+                    if let persistentEntry, persistentEntry.hasWatched {
+                        ZStack {
+                            Color.clear
+                            
+                            Image(systemName: "checkmark")
+                                .font(.largeTitle)
+                                .imageScale(.large)
+                                .bold()
+                        }
+                        .background(.ultraThinMaterial.opacity(0.6).blendMode(.darken), in: .rect(cornerRadius: 25))
+                    }
+                }
+                .animation(.bouncy, value: persistentEntry?.hasWatched)
                 .onTapGesture {
-                    showControl.toggle()
+                    if isSelected {
+                        selectedEntry = nil
+                    }else {
+                        selectedEntry = entry
+                    }
                 }
             
             EntryInfoView(title: entry.title, year: entry.year, type: entry.type)
@@ -25,12 +59,20 @@ struct EntryView: View {
             Spacer()
         }
         .overlay(alignment: .leading) {
-            BookmarkButton(entry: entry)
-                .offset(x: -75)
+            VStack {
+                if let persistentEntry {
+                    WatchButton(persistendEntry: persistentEntry)
+                        .offset(x: -75)
+                }
+                
+                BookmarkButton(entry: entry)
+                    .offset(x: -75)
+            }
         }
         .padding()
-        .offset(x: showControl ? 100 : 0)
-        .animation(.smooth, value: showControl)
+        .offset(x: isSelected ? 100 : 0)
+        .animation(.smooth, value: isSelected)
+        .animation(.smooth, value: persistentEntry)
     }
 }
 
@@ -88,5 +130,5 @@ struct EntryInfoView: View {
 }
 
 #Preview(body: {
-    EntryView(entry: .init()).environment(Watchlist.init())
+    EntryView(entry: .init(), selectedEntry: .constant(nil))
 })

@@ -7,12 +7,14 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
 struct BookmarkButton: View {
     let entry: SearchEntry
-    @Environment(Watchlist.self) var watchlist
+    @Environment(\.modelContext) var modelContext
+    @Query var bookmardEntries: Array<PersistentEntry>
     var  isBookmarkd: Bool {
-        watchlist.contains(entry)
+        bookmardEntries.contains { $0.imdbID == entry.imdbID }
     }
     
     var body: some View {
@@ -24,9 +26,14 @@ struct BookmarkButton: View {
             .background(Color.orange, in: .circle)
             .onTapGesture {
                 if isBookmarkd {
-                    watchlist.remove(entry)
+                    let deletingEntry = entry
+                    do {
+                        try modelContext.delete(model: PersistentEntry.self, where: #Predicate { $0.imdbID ==  deletingEntry.imdbID })
+                    } catch {
+                        print(error)
+                    }
                 }else {
-                    watchlist.add(entry)
+                    modelContext.insert(PersistentEntry(isBookmard: true, hasWatched: false, entry: entry))
                 }
             }
     }

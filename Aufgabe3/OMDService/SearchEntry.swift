@@ -15,12 +15,12 @@ struct SearchEntry: Codable, Hashable {
     var type: String
     var poster: String
     
-    init() {
-        self.title = "Demon Slayer: Kimetsu no Yaiba"
-        self.year = "2019"
-        self.imdbID = "tt9335498"
-        self.type = "series"
-        self.poster = "https://m.media-amazon.com/images/M/MV5BYTIxNjk3YjItYmYzMC00ZTdmLTk0NGUtZmNlZTA0NWFkZDMwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg"
+    init(title: String = "Demon Slayer: Kimetsu no Yaiba", year: String = "2019", type: String = "series", poster: String = "https://m.media-amazon.com/images/M/MV5BYTIxNjk3YjItYmYzMC00ZTdmLTk0NGUtZmNlZTA0NWFkZDMwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg", imdbID: String = "tt9335498") {
+        self.title = title
+        self.year = year
+        self.imdbID = imdbID
+        self.type = type
+        self.poster = poster
     }
     
     

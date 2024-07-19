@@ -10,6 +10,7 @@ import SwiftUI
 
 struct NavigationButton: View {
     @Binding var selection: Int
+    @Binding var selectedEntry: SearchEntry?
     
     var colorOfFirstButton: AnyShapeStyle {
         if selection == 1 {
@@ -30,6 +31,7 @@ struct NavigationButton: View {
     var body: some View {
         HStack {
             Button {
+                selectedEntry = nil
                 selection = 1
             } label: {
                 Image(systemName: "film.stack")
@@ -39,6 +41,7 @@ struct NavigationButton: View {
             .controlSize(.small)
             
             Button {
+                selectedEntry = nil
                 selection = 2
             } label: {
                 Image(systemName: "bookmark.fill")

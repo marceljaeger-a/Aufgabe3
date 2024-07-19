@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct Aufgabe3App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: PersistentEntry.self, inMemory: false)
         }
     }
 }
