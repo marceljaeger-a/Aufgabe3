@@ -10,11 +10,14 @@ import SwiftUI
 
 struct EntryView: View {
     let entry: SearchEntry
-    @Binding var watchlist: Array<SearchEntry>
+    
+    @Environment(Watchlist.self) var watchlist
     
     @State var showControl: Bool = false
     
-    @State var isBookmarkd = false
+    var isBookmarkd: Bool {
+        watchlist.contains(entry)
+    }
     
     var body: some View {
         HStack {
@@ -51,44 +54,11 @@ struct EntryView: View {
             Spacer()
         }
         .overlay(alignment: .leading) {
-            Image(systemName: "bookmark")
-                .symbolVariant(isBookmarkd ? .fill : .none)
-                .symbolEffect(.bounce, value: isBookmarkd)
-                .padding()
-                .foregroundStyle(.regularMaterial)
-                .background(Color.orange, in: .circle)
-                .onTapGesture {
-                    if isBookmarkd {
-                        var removingCount = 0
-                        for watchEntry in watchlist {
-                            if watchEntry == entry {
-                                break
-                            }
-                            removingCount += 1
-                        }
-                        watchlist.remove(at: removingCount)
-                    }else {
-                        watchlist.append(entry)
-                    }
-                }
+            BookmarkButton(entry: entry, watchlist: watchlist, isBookmarkd: isBookmarkd)
                 .offset(x: -75)
         }
         .padding()
         .offset(x: showControl ? 100 : 0)
         .animation(.smooth, value: showControl)
-        .onAppear {
-            if watchlist.contains(entry) {
-                isBookmarkd = true
-            }else {
-                isBookmarkd = false
-            }
-        }
-        .onChange(of: watchlist) { newValue in
-            if watchlist.contains(entry) {
-                isBookmarkd = true
-            }else {
-                isBookmarkd = false
-            }
-        }
     }
 }

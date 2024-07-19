@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 struct WatchlistView: View {
-    @Binding var watchlist: Array<SearchEntry>
+    @Environment(Watchlist.self) var watchlist
     
     var body: some View {
-        EntriyScrollView(entries: watchlist, watchlist: $watchlist)
+        EntriyScrollView(entries: watchlist.entries)
     }
 }
