@@ -8,6 +8,8 @@
 import Foundation
 
 struct OMDService {
+    static let apikey = ""
+    
     func getDetail(with items: GetQueryItem...) async throws -> DetailEntry {
         guard items.isEmpty == false else {
             throw OMDError.noArgument
@@ -19,7 +21,7 @@ struct OMDService {
             throw OMDError.invalidURLComponents
         }
         
-        let queryItems = [.init(name: "apikey", value: "8d2b3227")] + items.map { $0.queryItem }
+        let queryItems = [.init(name: "apikey", value: Self.apikey)] + items.map { $0.queryItem }
         urlComponents.queryItems = queryItems
         
         guard let url = urlComponents.url else {
@@ -53,7 +55,7 @@ struct OMDService {
             throw OMDError.invalidURLComponents
         }
         
-        let queryItems = [.init(name: "apikey", value: "8d2b3227"), SearchQueryItem.title(title).queryItem] + items.map { $0.queryItem }
+        let queryItems = [.init(name: "apikey", value: Self.apikey), SearchQueryItem.title(title).queryItem] + items.map { $0.queryItem }
         urlComponents.queryItems = queryItems
         
         guard let url = urlComponents.url else {
